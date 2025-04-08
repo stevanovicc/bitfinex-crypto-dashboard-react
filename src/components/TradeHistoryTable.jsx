@@ -30,14 +30,11 @@ const TradeHistoryTable = ({symbol}) => {
     return (
         <div>
           <div className="trade-table">
-            {/* Table Headers */}
             <div style={{ display: 'flex', fontWeight: 'bold', padding: '0.5rem 0' }}>
               <div style={{ width: '150px' }}>Amount</div>
               <div style={{ width: '150px' }}>Price</div>
               <div style={{ width: '200px' }}>Date</div>
             </div>
-      
-            {/* Virtualized List */}
             <List
               height={400}
               itemCount={trades.length}
