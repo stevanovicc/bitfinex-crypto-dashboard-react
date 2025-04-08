@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { fetchSymbols } from '../services/bitfinex';
 import useWebSocket from '../hooks/useWebSocket';
-import TradeHistoryTable from './TradeHistoryTable';
 
 const SymbolSearch = ({ onSelect }) => {
     const [symbols, setSymbols] = useState([]);
@@ -27,15 +26,19 @@ const SymbolSearch = ({ onSelect }) => {
             onChange={(e) => setQuery(e.target.value)}
           />
           <ul>
-            {filteredSymbols.map((symbol) => (
-              <li key={symbol} onClick={() => {
-                setSelectedSymbol(symbol);
-                onSelect(symbol);
-              }}>
-                {symbol.toUpperCase()}
-              </li>
-            ))}
-          </ul>
+          {filteredSymbols.map((symbol) => (
+         <li
+          key={symbol}
+          onClick={() => {
+          setSelectedSymbol(symbol);
+          onSelect(symbol);
+          }}
+         style={{ cursor: 'pointer' }}
+         >
+         {symbol.toUpperCase()}
+         </li>
+         ))}
+         </ul>
 
           {selectedSymbol && price && (
             <div>
@@ -44,7 +47,6 @@ const SymbolSearch = ({ onSelect }) => {
             </div>
           )}
 
-          {selectedSymbol && <TradeHistoryTable symbol={selectedSymbol}/>}
         </div>
       );
 };
