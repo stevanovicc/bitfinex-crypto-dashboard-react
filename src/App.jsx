@@ -1,28 +1,21 @@
-import React, {useState} from 'react';
-import SymbolSearch from './components/SymbolSearch';
-import TradeHistoryTable from './components/TradeHistoryTable';
+import React from 'react';
+import SymbolSearchPage from './pages/SymbolSearchPage';
+import TradeHistoryPage from './pages/TradeHistoryPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App(){
-  const [selectedSymbol, setSelectedSymbol] = useState(null);
-
-  const handleSymbolSelect = (symbol) => {
-    setSelectedSymbol(symbol);
-  };
 
   return(
-    <div className='App'>
+    <div className='my-16'>
       <h1>Bitfinex Crypto Dashboard</h1>
-
-      <SymbolSearch onSelect={handleSymbolSelect}/>
-
-      {selectedSymbol && (
-        <div>
-          <h2>Trade History for {selectedSymbol.toUpperCase()}</h2>
-          <TradeHistoryTable symbol={selectedSymbol}/>
-        </div> 
-      )}
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" Component={SymbolSearchPage}/>
+        <Route path="/tradehistory/:symbol" Component={TradeHistoryPage}/>
+      </Routes>
+      </BrowserRouter>
     </div>
   );
 };
 
-export default App;
+export default App; 

@@ -18,7 +18,7 @@ const useWebSocket = (symbol) => {
 
         socket.onmessage = (event) => {
             const data = JSON.parse(event.data);
-            if (Array.isArray(data) && data[1]) {
+            if (Array.isArray(data) && data[1] && data[1][6]) {
                 setPrice(data[1][6]);
             }
         };

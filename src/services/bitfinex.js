@@ -8,7 +8,7 @@ export const fetchSymbols = async() => {
         console.log("Api Response:", response.data);
         return response.data[0];
     } catch (error) {
-        console.error('Error fetching symbols: error');
+        console.error('Error fetching symbols:', error);
         return [];
     }
 };

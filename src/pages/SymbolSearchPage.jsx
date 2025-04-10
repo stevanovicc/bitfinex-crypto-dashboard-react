@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { fetchSymbols } from '../services/bitfinex';
-import useWebSocket from '../hooks/useWebSocket';
+import { useNavigate } from 'react-router-dom';
 
-const SymbolSearch = ({ onSelect }) => {
+const SymbolSearchPage = () => {
     const [symbols, setSymbols] = useState([]);
     const [query, setQuery] = useState('');
-    const [selectedSymbol, setSelectedSymbol] = useState(null);
-
-    const price = useWebSocket(selectedSymbol);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchSymbols().then(setSymbols);
@@ -29,9 +27,8 @@ const SymbolSearch = ({ onSelect }) => {
           {filteredSymbols.map((symbol) => (
          <li
           key={symbol}
-          onClick={() => {
-          setSelectedSymbol(symbol);
-          onSelect(symbol);
+          onClick={() =>{
+            navigate('/tradehistory/' + symbol)
           }}
          style={{ cursor: 'pointer' }}
          >
@@ -39,16 +36,7 @@ const SymbolSearch = ({ onSelect }) => {
          </li>
          ))}
          </ul>
-
-          {selectedSymbol && price && (
-            <div>
-                <h2>Live Price for {selectedSymbol.toUpperCase()}</h2>
-                <p>${price}</p>
-            </div>
-          )}
-
         </div>
       );
 };
-
-export default SymbolSearch;
+export default SymbolSearchPage;

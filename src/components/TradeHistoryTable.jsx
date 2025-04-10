@@ -29,6 +29,7 @@ const TradeHistoryTable = ({symbol}) => {
 
     return (
         <div>
+          <h2>Trade History for {symbol}</h2>
           <div className="trade-table">
             <div style={{ display: 'flex', fontWeight: 'bold', padding: '0.5rem 0' }}>
               <div style={{ width: '150px' }}>Amount</div>
